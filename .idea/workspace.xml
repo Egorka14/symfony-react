@@ -10,12 +10,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d47aaaf-5779-4b83-93c9-8811c8e9f16d" name="Default Changelist" comment="initial commit">
-      <change afterPath="$PROJECT_DIR$/assets/js/components/TodoTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/contexts/TodoContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="4d47aaaf-5779-4b83-93c9-8811c8e9f16d" name="Default Changelist" comment="created a context and rendered">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/components/TodoTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/TodoTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/contexts/TodoContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/contexts/TodoContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,12 +164,13 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/assets/js" />
       <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -186,7 +188,7 @@
       <workItem from="1600691428926" duration="6368000" />
       <workItem from="1600699074378" duration="6000" />
       <workItem from="1601373205016" duration="8820000" />
-      <workItem from="1601451958662" duration="3368000" />
+      <workItem from="1601451958662" duration="7001000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1601400918471</created>
@@ -202,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601401121609</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="created a context and rendered">
+      <created>1601457586207</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601457586207</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +234,8 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="created a context and rendered" />
+    <option name="LAST_COMMIT_MESSAGE" value="created a context and rendered" />
   </component>
   <component name="WindowStateProjectService">
     <state x="579" y="214" width="824" height="691" key="#CLI_Interpreters" timestamp="1601400122602">
@@ -256,10 +266,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="485" y="188" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1601402103977" />
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601401129925">
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1601457599603">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1601401129925" />
+    <state x="591" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1601457599603" />
     <state x="687" y="292" width="620" height="522" key="find.popup" timestamp="1601399810063">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
