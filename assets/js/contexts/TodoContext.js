@@ -1,4 +1,5 @@
 import React, {createContext} from 'react';
+import axios from 'axios';
 
 export const TodoContext = createContext()
 
@@ -6,43 +7,65 @@ class TodoContextProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: [
-                { name: 'do something' },
-                { name: 'do something' },
-                { name: 'do something' },
-                { name: 'do something' },
-                { name: 'do something' },
-                { name: 'do something' },
-                { name: 'do something' }
-            ],
+            todos: [],
         };
+        this.readTodo();
     }
 
     //create
-    createTodo(event, todo) {
+    createTodo(event, todoName) {
         event.preventDefault();
-        let data = [
-            ...this.state.todos
-        ];
-        data.push(todo)
-        this.setState({
-            todos: data,
+        let checkTodoName = this.state.todos.find(todo => {
+            return todo.name === todoName
         })
+
+        if (!checkTodoName) {
+            let data = [
+                ...this.state.todos
+            ];
+            data.push({id: this.state.todos.length, name: todoName})
+            this.setState({
+                todos: data,
+            })
+        }
     }
 
     //read
     readTodo() {
-
+        axios.get('/api/todo/read')
+            .then(responce => {
+                this.setState({
+                    todos: responce.data,
+                })
+            }).catch(error => {
+                console.log(error)
+        })
     }
 
     //update
-    updateTodo() {
+    updateTodo(data) {
+      let todos = [
+          ...this.state.todos
+      ]
+       let todo = todos.find(todo => {
+            return todo.id === data.id
+        })
 
+        todo.name = data.name;
+
+      this.setState({
+          todos: todos
+      })
     }
 
     //delete
-    deleteTodo() {
-
+    deleteTodo(id) {
+        let todos = [
+            ...this.state.todos
+        ]
+        this.setState({
+            todos: todos.filter(todo => todo.id !== id)
+        })
     }
 
     render() {
