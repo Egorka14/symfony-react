@@ -5,6 +5,7 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "auth0/jwt-auth-bundle": "^3.4",
         "composer/package-versions-deprecated": "^1.11",
         "doctrine/annotations": "^1.0",

@@ -15,7 +15,10 @@ function TodoTable() {
 
         return (
             <Fragment>
-                <form onSubmit={() => {context.createTodo(event, addTodo)}}>
+                <form onSubmit={() => {
+                    context.createTodo(event, addTodo);
+                    setAddTodo('');
+                }}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -75,6 +78,7 @@ function TodoTable() {
                                     }}>
                                         <Edit/>
                                     </IconButton>
+
                                     <IconButton onClick={() => {
                                         setDeleteConfirmationIsShown(true);
                                         setTodoToBeDeleted(todo);

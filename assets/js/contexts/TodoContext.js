@@ -1,7 +1,17 @@
 import React, {createContext} from 'react';
 import axios from 'axios';
+import request from "../request";
+import config from "../Config";
 
 export const TodoContext = createContext()
+
+const ApiUrl = ()=> {
+    return config.apiUrl;
+};
+
+const ApiTodo = ()=> {
+    return config.apiTodo;
+};
 
 class TodoContextProvider extends React.Component {
     constructor(props) {
@@ -12,27 +22,35 @@ class TodoContextProvider extends React.Component {
         this.readTodo();
     }
 
-    //create
-    createTodo(event, todoName) {
-        event.preventDefault();
-        let checkTodoName = this.state.todos.find(todo => {
-            return todo.name === todoName
-        })
 
-        if (!checkTodoName) {
-            let data = [
-                ...this.state.todos
-            ];
-            data.push({id: this.state.todos.length, name: todoName})
-            this.setState({
-                todos: data,
+    isEmpty(str) {
+        if (str.trim() === '') return false;
+
+        return true;
+    }
+
+    //create
+    createTodo(event, todo) {
+        event.preventDefault();
+
+        if (this.isEmpty(todo)) {
+            axios.post(ApiUrl() + ApiTodo() +'/create', {name: todo})
+                .then(response => {
+                    console.log(response.data);
+                    let data = [...this.state.todos];
+                    data.push(response.data.todo);
+                    this.setState({
+                        todos:data
+                    })
+                }).catch(error => {
+                console.log(error);
             })
         }
     }
 
     //read
     readTodo() {
-        axios.get('/api/todo/read')
+        axios.get(ApiUrl() + ApiTodo() + '/read')
             .then(responce => {
                 this.setState({
                     todos: responce.data,
@@ -44,27 +62,42 @@ class TodoContextProvider extends React.Component {
 
     //update
     updateTodo(data) {
-      let todos = [
-          ...this.state.todos
-      ]
-       let todo = todos.find(todo => {
-            return todo.id === data.id
+
+        axios.put(ApiUrl() + ApiTodo() + '/update/' + data.id, data)
+            .then(response => {
+                console.log(response.data.message);
+                let todos = [
+                    ...this.state.todos
+                ]
+                let todo = todos.find(todo => {
+                    return todo.id === data.id
+                })
+
+                todo.name = data.name;
+
+                this.setState({
+                    todos: todos
+                })
+            }).catch(error => {
+            console.log(error);
         })
 
-        todo.name = data.name;
 
-      this.setState({
-          todos: todos
-      })
     }
 
     //delete
     deleteTodo(id) {
-        let todos = [
-            ...this.state.todos
-        ]
-        this.setState({
-            todos: todos.filter(todo => todo.id !== id)
+        axios.delete(ApiUrl() + ApiTodo() + '/delete/' + id)
+            .then(response => {
+                console.log(response.data.message);
+                let todos = [
+                    ...this.state.todos
+                ]
+                this.setState({
+                    todos: todos.filter(todo => todo.id !== id)
+                })
+            }).catch(error => {
+            console.log(error);
         })
     }
 
