@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Todo;
+use App\Form\TodoType;
 use App\Repository\TodoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,19 +47,51 @@ class TodoController extends AbstractController
     {
         $content = json_decode($request->getContent());
 
+        $form = $this->createForm(TodoType::class);
+        $form->submit((array)$content);
+        if (!$form->isValid()) {
+            $errors = [];
+            foreach ($form->getErrors(true, true) as $error) {
+                $propertyName = $error->getOrigin() -> getName();
+                $errors[$propertyName] = $error->getMessage();
+            }
+            return  $this->json([
+                'message' => [
+                    'text' => join("\n", $errors),
+                    'level' => 'error'
+                ]
+            ]);
+        }
+
         $todo = new Todo();
 
-        $todo->setName($content->name);
+        $todo->setTask($content->task);
+        $todo->setDescription($content->description);
 
         try {
             $this->entityManager->persist($todo);
             $this->entityManager->flush();
-            return $this->json([
-                'todo' => $todo->toArray()
-            ]);
         } catch (\Exception $exception) {
-            //error
+            return $this->json([
+                'message' => [
+                    'text' => [
+                        'Task has to be unique!',
+                    ],
+                    'level' => 'error'
+                ]
+            ]);
         }
+
+        return $this->json([
+            'todo' => $todo->toArray(),
+            'message' => [
+                'text' => [
+                    'Todo has been created!',
+                    'Task: ' . $content->task
+                ],
+                'level' => 'success'
+            ]
+        ]);
     }
 
 
@@ -71,41 +104,93 @@ class TodoController extends AbstractController
     public function update(Request $request, Todo $todo)
     {
         $content = json_decode($request->getContent());
-        $todo->setName($content->name);
+
+        $form = $this->createForm(TodoType::class);
+        $nonObject = (array)$content;
+        unset($nonObject['id']);
+        $form->submit($nonObject);
+
+        if (!$form->isValid()) {
+            $errors = [];
+            foreach ($form->getErrors(true, true) as $error) {
+                $propertyName = $error->getOrigin() -> getName();
+                $errors[$propertyName] = $error->getMessage();
+            }
+            return  $this->json([
+                'message' => [
+                    'text' => join("\n", $errors),
+                    'level' => 'error'
+                ]
+            ]);
+        }
+
+
+        if ($todo->getTask() === $content->task && $todo->getDescription() === $content->description) {
+            return $this->json([
+                'message' => [
+                    'text' => [
+                        'There was no change to the To-Do. Neither the name or the description changed',
+                    ],
+                    'level' => 'error'
+                ]
+            ]);
+        }
+        $todo->setTask($content->task);
+        $todo->setDescription($content->description);
 
         try {
             $this->entityManager->flush();
         } catch (\Exception $exception) {
             return $this->json([
-                'message' => $exception
+                'message' => [
+                    'text' => [
+                        'Could not reach database when attempting to update a To-Do.',
+                    ],
+                    'level' => 'error'
+                ]
             ]);
         }
 
         return $this->json([
-            'message' => 'todo has been updated'
+            'todo' => $todo->toArray(),
+            'message' => [
+                'text' => [
+                    'To-Do successfully updated!',
+                ],
+                'level' => 'success'
+            ]
         ]);
     }
 
 
     /**
      * @Route("/delete/{id}", name="api_todo_delete", methods={"DELETE"})
-     * @param Request $request
      * @param Todo $todo
      * @return JsonResponse
      */
-    public function delete(Request $request, Todo $todo)
+    public function delete(Todo $todo)
     {
         try {
             $this->entityManager->remove($todo);
             $this->entityManager->flush();
         } catch (\Exception $exception) {
             return $this->json([
-                'message' => $exception
+                'message' => [
+                    'text' => [
+                        'Could not reach database when attempting to delete a To-Do.',
+                    ],
+                    'level' => 'error'
+                ]
             ]);
         }
 
         return $this->json([
-            'message' => 'todo has been deleted'
+            'message' => [
+                'text' => [
+                    'To-Do has successfully been deleted!',
+                ],
+                'level' => 'success'
+            ]
         ]);
     }
 }

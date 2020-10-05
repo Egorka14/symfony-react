@@ -18,6 +18,7 @@ class TodoContextProvider extends React.Component {
         super(props);
         this.state = {
             todos: [],
+            message: {},
         };
         this.readTodo();
     }
@@ -30,33 +31,37 @@ class TodoContextProvider extends React.Component {
     }
 
     //create
-    createTodo(event, todo) {
+    createTodo(event, todoTitle, todoDescription) {
         event.preventDefault();
 
-        if (this.isEmpty(todo)) {
-            axios.post(ApiUrl() + ApiTodo() +'/create', {name: todo})
+            axios.post(ApiUrl() + ApiTodo() +'/create', {task: todoTitle, description: todoDescription})
                 .then(response => {
-                    console.log(response.data);
-                    let data = [...this.state.todos];
-                    data.push(response.data.todo);
-                    this.setState({
-                        todos:data
-                    })
+                    if (response.data.message.level === 'success') {
+                        let data = [...this.state.todos];
+                        data.push(response.data.todo);
+                        this.setState({
+                            todos:data,
+                            message: response.data.message,
+                        })
+                    } else {
+                        this.setState({
+                            message: response.data.message,
+                        })
+                    }
                 }).catch(error => {
                 console.log(error);
             })
-        }
     }
 
     //read
     readTodo() {
         axios.get(ApiUrl() + ApiTodo() + '/read')
-            .then(responce => {
+            .then(response => {
                 this.setState({
-                    todos: responce.data,
+                    todos: response.data,
                 })
             }).catch(error => {
-                console.log(error)
+                console.error(error)
         })
     }
 
@@ -65,21 +70,30 @@ class TodoContextProvider extends React.Component {
 
         axios.put(ApiUrl() + ApiTodo() + '/update/' + data.id, data)
             .then(response => {
-                console.log(response.data.message);
-                let todos = [
-                    ...this.state.todos
-                ]
-                let todo = todos.find(todo => {
-                    return todo.id === data.id
-                })
+                if (response.data.message.level === 'error') {
+                    this.setState({
+                        message: response.data.message,
+                    })
+                } else {
+                    console.log(response.data.message);
+                    let todos = [
+                        ...this.state.todos
+                    ]
+                    let todo = todos.find(todo => {
+                        return todo.id === data.id
+                    })
 
-                todo.name = data.name;
+                    todo.task = data.task;
+                    todo.description = data.description;
 
-                this.setState({
-                    todos: todos
-                })
+                    this.setState({
+                        todos: todos,
+                        message: response.data.message,
+                    })
+                }
+
             }).catch(error => {
-            console.log(error);
+            console.error(error);
         })
 
 
@@ -89,15 +103,23 @@ class TodoContextProvider extends React.Component {
     deleteTodo(id) {
         axios.delete(ApiUrl() + ApiTodo() + '/delete/' + id)
             .then(response => {
-                console.log(response.data.message);
-                let todos = [
-                    ...this.state.todos
-                ]
-                this.setState({
-                    todos: todos.filter(todo => todo.id !== id)
-                })
+                if (response.data.message.level === 'error') {
+                    this.setState({
+                        message: response.data.message,
+                    })
+                } else {
+                    console.log(response.data.message);
+                    let todos = [
+                        ...this.state.todos
+                    ]
+                    this.setState({
+                        todos: todos.filter(todo => todo.id !== id),
+                        message: response.data.message,
+                    })
+                }
+
             }).catch(error => {
-            console.log(error);
+            console.error(error);
         })
     }
 
@@ -108,6 +130,7 @@ class TodoContextProvider extends React.Component {
                 createTodo: this.createTodo.bind(this),
                 updateTodo: this.updateTodo.bind(this),
                 deleteTodo: this.deleteTodo.bind(this),
+                setMessage: (message) => this.setState({message: message}),
             }}>
                 { this.props.children }
             </TodoContext.Provider>
