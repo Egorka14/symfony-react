@@ -1,10 +1,33 @@
 import React, {Fragment, useContext, useState} from 'react';
 import {TodoContext} from "../contexts/TodoContext";
 import Table from "@material-ui/core/Table";
-import {TableHead, TableRow, TableCell, TableBody, IconButton, TextField, InputAdornment} from "@material-ui/core";
+import {
+    TableHead,
+    TableRow,
+    TableCell,
+    TableBody,
+    IconButton,
+    TextField,
+    InputAdornment,
+    createStyles
+} from "@material-ui/core";
 import {Delete, Edit, TextFields, Add, Done, Cancel, Close} from "@material-ui/icons";
 import DeleteDialog from "./DeleteDialog";
 import Typography from "@material-ui/core/Typography";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const useStyles = makeStyles(theme => ({
+    thead: {
+        backgroundColor: theme.palette.primary.main,
+    },
+}))
+
+// const styles = (theme) => createStyles({
+//     thead: {
+//         backgroundColor: theme.palette.primary.main,
+//     }
+// })
 
 function TodoTable() {
     const context = useContext(TodoContext);
@@ -15,6 +38,9 @@ function TodoTable() {
     const [editTodoDescription, setEditTodoDescription] = useState('');
     const [deleteConfirmationIsShown, setDeleteConfirmationIsShown] = useState(false);
     const [todoToBeDeleted, setTodoToBeDeleted] = useState(null);
+
+    const classes = useStyles();
+    // const {classes} = props;
 
     const onCreateSubmit = (event) => {
         event.preventDefault();
@@ -37,45 +63,52 @@ function TodoTable() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>Task</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell align={"right"}>Actions</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow>
                             <TableCell>
                                 <form onSubmit={onCreateSubmit}>
-                                <TextField
-                                    type={'text'}
-                                    value={addTodoTitle}
-                                    onChange={(event) => {
-                                        setAddTodoTitle(event.target.value);
-                                    }}
-                                    label={"New Title"}
-                                    fullWidth={true}
-                                />
+                                    <TextField
+                                        variant="outlined"
+                                        type="text"
+                                        size="small"
+                                        value={addTodoTitle}
+                                        onChange={(event) => {
+                                            setAddTodoTitle(event.target.value);
+                                        }}
+                                        label="Task"
+                                        fullWidth={true}
+                                    />
                                 </form>
                             </TableCell>
                             <TableCell>
                                 <form onSubmit={onCreateSubmit}>
                                     <TextField
-                                        type={'text'}
+                                        variant="outlined"
+                                        type="text"
+                                        size="small"
                                         value={addTodoDescription}
                                         onChange={(event) => {
                                             setAddTodoDescription(event.target.value);
                                         }}
-                                        label={"Description"}
+                                        label="Description"
                                         fullWidth={true}
                                     />
                                 </form>
                             </TableCell>
-                            <TableCell align={"right"}>
-                                <IconButton onClick={onCreateSubmit}>
+                            <TableCell align={"right"} width={130}>
+                                <IconButton
+                                    onClick={onCreateSubmit}
+                                    color={"primary"}
+                                >
                                     <Add />
                                 </IconButton>
                             </TableCell>
                         </TableRow>
+                        <TableRow className={classes.thead}>
+                            <TableCell width={200}>Task</TableCell>
+                            <TableCell>Description</TableCell>
+                            <TableCell align="right">Actions</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
                         {context.todos.slice().reverse().map((todo,index) => (
                             <TableRow key={'todo ' + index}>
                                 <TableCell>
@@ -118,7 +151,7 @@ function TodoTable() {
                                         </Fragment>
                                         :
                                         <Fragment>
-                                        <IconButton onClick={() => {
+                                        <IconButton color={"primary"} onClick={() => {
                                             setEditIsShown(todo.id);
                                             setEditTodoTitle(todo.task);
                                             setEditTodoDescription(todo.description)
@@ -126,7 +159,7 @@ function TodoTable() {
                                             <Edit/>
                                         </IconButton>
 
-                                        <IconButton onClick={() => {
+                                        <IconButton color={"secondary"} onClick={() => {
                                         setDeleteConfirmationIsShown(true);
                                         setTodoToBeDeleted(todo);
                                     }}>
@@ -152,4 +185,4 @@ function TodoTable() {
         );
 }
 
-export default TodoTable;
+export default /*withStyles(styles)(*/TodoTable/*)*/;

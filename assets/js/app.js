@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import TodoContextProvider from "./contexts/TodoContext";
-import TodoTable from "./components/TodoTable";
-import { CssBaseline } from "@material-ui/core";
-import AppSnackbar from "./components/AppSnackbar";
+
+import DefaultThemeProvider from "./components/themes/DefaultThemeProvider";
+import Router from "./components/Router";
 
 class App extends React.Component {
     render() {
         return (
-            <TodoContextProvider>
-                    <TodoTable />
-                    <AppSnackbar />
-            </TodoContextProvider>
+            <Router/>
         );
     }
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+ReactDOM.render(
+    <DefaultThemeProvider>
+        <App/>
+    </DefaultThemeProvider>
+    , document.getElementById('root'))
