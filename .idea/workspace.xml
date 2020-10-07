@@ -10,18 +10,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d47aaaf-5779-4b83-93c9-8811c8e9f16d" name="Default Changelist" comment="created back-end methods fore creating, deleting and updating data in the database">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/Config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/components/AppSnackbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/request.js" afterDir="false" />
+    <list default="true" id="4d47aaaf-5779-4b83-93c9-8811c8e9f16d" name="Default Changelist" comment="Add column &quot;description&quot; and create symfony forms and create/modification Snackbar">
+      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/components/Navigation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/components/Router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/components/themes/DefaultThemeProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/components/DeleteDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/DeleteDialog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/components/TodoTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/components/TodoTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/contexts/TodoContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/contexts/TodoContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TodoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TodoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Todo.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Todo.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,21 +168,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/assets/js" />
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/js" />
       <recent name="$PROJECT_DIR$/src/Controller" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/assets/js" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -209,6 +205,13 @@
       <workItem from="1601620806492" duration="10572000" />
       <workItem from="1601889623248" duration="3154000" />
       <workItem from="1601898578644" duration="30000" />
+      <workItem from="1601984922826" duration="3381000" />
+      <workItem from="1602054136826" duration="7000" />
+      <workItem from="1602054161793" duration="84000" />
+      <workItem from="1602054314065" duration="143000" />
+      <workItem from="1602056286548" duration="608000" />
+      <workItem from="1602057079545" duration="23000" />
+      <workItem from="1602057109573" duration="5450000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1601400918471</created>
@@ -252,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601624401892</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add column &quot;description&quot; and create symfony forms and create/modification Snackbar">
+      <created>1601918092920</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601918092920</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +289,8 @@
     <MESSAGE value="created a material UI table and a createTodo method for the front-end" />
     <MESSAGE value="created updateTodo &amp; deleteTodo method and created a database table and fetched the data." />
     <MESSAGE value="created back-end methods fore creating, deleting and updating data in the database" />
-    <option name="LAST_COMMIT_MESSAGE" value="created back-end methods fore creating, deleting and updating data in the database" />
+    <MESSAGE value="Add column &quot;description&quot; and create symfony forms and create/modification Snackbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add column &quot;description&quot; and create symfony forms and create/modification Snackbar" />
   </component>
   <component name="WindowStateProjectService">
     <state x="579" y="214" width="824" height="691" key="#CLI_Interpreters" timestamp="1601400122602">
@@ -294,6 +305,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="591" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1601905475796" />
+    <state x="732" y="391" width="518" height="332" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog" timestamp="1602057100501">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="732" y="391" width="518" height="332" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1602057100501" />
     <state x="189" y="27" width="550" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1601905088616">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -302,10 +317,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="729" y="468" width="523" height="185" key="ComposerInitDialogKey/72.27.1848.1053@72.27.1848.1053" timestamp="1601556693664" />
-    <state x="779" y="311" width="457" height="491" key="FileChooserDialogImpl" timestamp="1601905194339">
+    <state x="779" y="311" width="511" height="491" key="FileChooserDialogImpl" timestamp="1602057096556">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="779" y="311" width="457" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1601905194339" />
+    <state x="779" y="311" width="511" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1602057096556" />
     <state x="836" y="453" key="Github.ShareDialog" timestamp="1601400621446">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -322,10 +337,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="666" y="273" width="771" height="568" key="NewPhpClassDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1600694166625" />
-    <state x="485" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1601402103977">
+    <state x="485" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1602057159981">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="485" y="188" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1601402103977" />
+    <state x="485" y="188" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1602057159981" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1601539793053">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
